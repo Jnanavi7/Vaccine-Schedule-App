@@ -1,1 +1,145 @@
-<p>view works!</p>
+<div class="add-button mb-3">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      View Report
+    </button>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <label class="form-label" for="nameDropdown">Select a name</label>
+            <select class="form-select mb-3" id="nameDropdown" [(ngModel)]="selectedName" (change)="onNameSelected()">
+              <option *ngFor="let name of filteredNames" [value]="name">{{ name }}</option>
+            </select>
+          </div>
+  
+          <div *ngIf="childData">
+            <div *ngIf="selectedName">
+              <div *ngFor="let child of childData">
+                <label class="form-label" for="childAge">DOB</label>
+                <input class="form-control" type="text" [value]="child.dob" readonly>
+  
+                <label class="form-label" for="motherName">Mother Name</label>
+                <input class="form-control" type="text" [value]="child.motherName" readonly>
+  
+                <label class="form-label" for="fatherName">Father Name</label>
+                <input class="form-control" type="text" [value]="child.fatherName" readonly>
+  
+                <label class="form-label" for="sex">Sex</label>
+                <input class="form-control" type="text" [value]="child.sex" readonly>
+  
+                <label class="form-label" for="contactNo1">Mother Contact No</label>
+                <input class="form-control" type="text" [value]="child.contactNo1" readonly>
+  
+                <label class="form-label" for="contactNo2">Father Contact No</label>
+                <input class="form-control" type="text" [value]="child.contactNo2" readonly>
+              </div>
+  
+            </div>
+          </div>
+  
+  
+          <div>
+            <label class="form-label" for="vacName">Select a Vaccine</label>
+            <select class="form-select mb-3" [(ngModel)]="selectedVaccine" (change)="onVacSelected()">
+              <option *ngFor="let vaccine of filteredVacName" [value]="vaccine">{{ vaccine }}</option>
+            </select>
+          </div>
+          <div *ngIf="vaccineData">
+            <div *ngFor="let vaccine of vaccineData">
+              <div class="mb-2">
+                <label class="form-label" for="dosage">Dosage</label>
+                <input class="form-control" type="text" [value]="vaccine.dosage" readonly>
+              </div>
+  
+              <div class="mb-2">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" value="given">
+                  <label class="form-check-label" for="given">Given</label>
+                </div>
+              </div>
+            </div>
+  
+          </div>
+  
+  
+          <div class="mb-2">
+            <label for="due" class="form-label">Due date</label>
+            <input type="date" class="form-control" placeholder="Enter due date">
+          </div>
+  
+          <div class="mb-2">
+            <label for="given" class="form-label">Given date</label>
+            <input type="date" class="form-control" placeholder="Enter Vaacine Given date">
+          </div>
+  
+          <div class="mb-2">
+            <label for="comment" class="form-label">Comments</label>
+            <input type="text" class="form-control" placeholder="Comment">
+          </div>
+  
+  
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-10">
+        <div class="panel">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col col-sm-3 col-xs-12">
+                <h4 class="title">Data <span>List</span></h4>
+              </div>
+              <div class="col-sm-9 col-xs-12 text-right">
+                <div class="btn_group">
+                  <input type="text" class="form-control" placeholder="Search">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>DOB</th>
+                  <th>Sex</th>
+                  <th>Mother's Name</th>
+                  <th>Father's Name</th>
+                  <th>Address</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let child of childData">
+                  <td>{{ child.name }}</td>
+                  <td>{{ child.dob }}</td>
+  
+                  <td>{{ child.sex }}</td>
+                  <td>{{ child.motherName }}</td>
+  
+                  <td>{{ child.fatherName }}</td>
+  
+                  <td>{{ child.address }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div> -->
