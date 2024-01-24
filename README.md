@@ -1,27 +1,27 @@
-# VaccineScheduleApp
+# Vaccine Scheduling Web App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Welcome to the Vaccine Scheduling Web App repository! This Angular-based web application is designed to streamline and simplify the process of scheduling, tracking vaccination for children Aged 0-14 years .
 
-## Code scaffolding
+## Key Features
+- **User-Friendly Interface:** Intuitive design and user-friendly interface for a seamless scheduling experience.
+- **Schedule and Track:** Easily schedule vaccination appointments based on availability and user preferences, Track updated from healthcare  staff.
+- **Admin Panel:** Admin Panel to help healthcare staff add new vaccines, update info about availability of vaccines
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Tech Stack
+- **Angular:** Leveraging the power of Angular for a robust and modular front-end.
+- **Bootstrap:** Utilizing Bootstrap for a responsive and visually appealing UI.
+- **TypeScript:** Enhancing code maintainability and scalability with TypeScript's static typing.
 
-## Running unit tests
+## How to Run
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Run `npm install` to install dependencies.
+4. Use `ng serve` to start the development server.
+5. Open the app in your browser at `http://localhost:4200/`.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
