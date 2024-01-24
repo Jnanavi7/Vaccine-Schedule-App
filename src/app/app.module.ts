@@ -7,19 +7,25 @@ import { ChildDetailsComponent } from './child-details/child-details.component';
 import { HeaderComponent } from './header/header.component';
 import { VaccineDetailsComponent } from './vaccine-details/vaccine-details.component';
 import { ViewComponent } from './view/view.component';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http'
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChildDetailsComponent,
     HeaderComponent,
+    ChildDetailsComponent,
     VaccineDetailsComponent,
     ViewComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

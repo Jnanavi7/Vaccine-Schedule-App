@@ -1,1 +1,130 @@
-<p>child-details works!</p>
+<div class="add-button mb-3">
+    <button type="button" (click)="onClickAdd()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+Add child details
+    </button>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="childForm">
+                    <div class="mb-2">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" formControlName="name"
+                            placeholder="Enter name">
+                    </div>
+                    <div class="mb-2">
+                        <label for="dob" class="form-label">Date of Birth</label>
+                        <input type="date" class="form-control" id="dob" formControlName="dob"
+                            placeholder="Enter date of birth">
+                    </div>
+                    <div class="mb-2">
+                        <label for="tob" class="form-label">Time of Birth</label>
+                        <input type="time" class="form-control" id="tob" formControlName="tob"
+                            placeholder="Enter time of birth">
+                    </div>
+                    <div class="mb-2">
+                        <label for="sex" class="form-label">Sex</label>
+                        <input type="text" class="form-control" id="sex" formControlName="sex" placeholder="Enter sex">
+                    </div>
+                    <div class="mb-2">
+                        <label for="motherName" class="form-label">Mother's Name</label>
+                        <input type="text" class="form-control" id="motherName" formControlName="motherName"
+                            placeholder="Enter mother's name">
+                    </div>
+                    <div class="mb-2">
+                        <label for="contactNo1" class="form-label">Contact No</label>
+                        <input type="text" class="form-control" id="contactNo1" formControlName="contactNo1"
+                            placeholder="Enter contact no. 1">
+                    </div>
+                    <div class="mb-2">
+                        <label for="fatherName" class="form-label">Father's Name</label>
+                        <input type="text" class="form-control" id="fatherName" formControlName="fatherName"
+                            placeholder="Enter father's name">
+                    </div>
+                    <div class="mb-2">
+                        <label for="contactNo2" class="form-label">Contact No</label>
+                        <input type="text" class="form-control" id="contactNo2" formControlName="contactNo2"
+                            placeholder="Enter contact no. 2">
+                    </div>
+                    <div class="mb-2">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address" formControlName="address"
+                            placeholder="Enter address">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" *ngIf="showAdd" (click)="addChildDetails()">Add</button>
+                    <button type="button" class="btn btn-primary" *ngIf="showUpdate" (click)="updateChildDetails()">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  <div class="container">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col col-sm-3 col-xs-12">
+                            <h4 class="title">Data <span>List</span></h4>
+                        </div>
+                        <div class="col-sm-9 col-xs-12 text-right">
+                            <!-- <div class="btn_group">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>DOB</th>
+                                <th>TOB</th>
+                                <th>Sex</th>
+                                <th>Mother's Name</th>
+                                <th>Contact No</th>
+                                <th>Father's Name</th>
+                                <th>Contact No</th>
+                                <th>Address</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let child of childData">
+                                <td>{{ child.name }}</td>
+                                <td>{{ child.dob }}</td>
+                                <td>{{ child.tob }}</td>
+                                <td>{{ child.sex }}</td>
+                                <td>{{ child.motherName }}</td>
+                                <td>{{ child.contactNo1 }}</td>
+                                <td>{{ child.fatherName }}</td>
+                                <td>{{ child.contactNo2 }}</td>
+                                <td>{{ child.address }}</td>
+                                <td>
+                                    <div class="buttonsize">
+                                        <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="editChildDetails(child)">Edit</button>
+                                        <button class="btn btn-primary" (click)="deleteChildDetails(child.id)">Delete</button>
+                                    </div>
+                                </td>
+                              </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>
+  
