@@ -1,193 +1,286 @@
 <div class="add-button mb-3">
-    <button type="button" class="btn btn-primary addmodal" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Add Vaccine Details
-    </button>
+  <button
+    type="button"
+    class="btn btn-primary addmodal"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+  >
+    Add Vaccine Details
+  </button>
 </div>
 
-
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Vaccine Details</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Add Vaccine Details
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="vaccineForm">
+          <label for="selectName">Child Name</label>
+          <select
+            class="form-select mb-3"
+            aria-label="Default select example"
+            formControlName="selectName"
+            (change)="onChildSelect($event)"
+            placeholder="select Child name"
+          >
+            <option selected>select child name</option>
+            <option *ngFor="let group of childData" [value]="group.name">
+              {{ group.name }}
+            </option>
+            <small
+              [class.d-none]="
+                vaccineForm.get('selectName')?.valid ||
+                vaccineForm.get('selectName')?.untouched
+              "
+              class="text-danger"
+              >Name is required</small
+            >
+          </select>
+
+          <label for="age">Child's age</label>
+          <select
+            class="form-select mb-3"
+            aria-label="Default select example"
+            formControlName="age"
+            (change)="onChangeEvent($event)"
+          >
+            <option selected>Select Child's Age</option>
+            <option value="Birth">Birth</option>
+            <option value="6weeks">6 weeks</option>
+            <option value="10weeks">10 weeks</option>
+            <option value="14weeks">14 weeks</option>
+            <option value="6months">6 months</option>
+            <option value="9months">9 months</option>
+            <option value="12months">12 months</option>
+            <option value="13months">13 months</option>
+            <option value="15months">15 months</option>
+            <option value="16-18months">16-18 months</option>
+            <option value="18months">18 months</option>
+            <option value="2years">2 years</option>
+            <option value="4-6years">4-6 years</option>
+            <option value="9-14years">9-14 years</option>
+            <option value="15-18years">15-18 years</option>
+          </select>
+
+          <label for="vaccine">Vaccine</label>
+          <select
+            class="form-select mb-3"
+            aria-label="Default select example"
+            formControlName="vacName"
+            (change)="onVacSelect($event)"
+          >
+            <option selected>Select Vaccine</option>
+            <ng-container *ngIf="selectedAge === 'Birth'">
+              <option value="BCG">BCG</option>
+              <option value="OPV">OPV</option>
+              <option value="Hep-B">Hep-B</option>
+            </ng-container>
+            <ng-container *ngIf="selectedAge === '6weeks'">
+              <option value="DTwP/DTaP">DTwP/DTaP</option>
+              <option value="IPV">IPV</option>
+              <option value="Hib">Hib</option>
+              <option value="Hep-B">Hep-B</option>
+              <option value="Rotavirus">Rotavirus</option>
+              <option value="PCV">PCV</option>
+            </ng-container>
+            <ng-container *ngIf="selectedAge === '10weeks'">
+              <option value="DTwP/DTaP">DTwP/DTaP</option>
+              <option value="IPV">IPV</option>
+              <option value="Hib">Hib</option>
+              <option value="Hep-B">Hep-B</option>
+              <option value="Rotavirus">Rotavirus</option>
+              <option value="PCV">PCV</option>
+            </ng-container>
+            <ng-container *ngIf="selectedAge === '14weeks'">
+              <option value="DTwP/DTaP">DTwP/DTaP</option>
+              <option value="IPV">IPV</option>
+              <option value="Hib">Hib</option>
+              <option value="Hep-B">Hep-B</option>
+              <option value="Rotavirus">Rotavirus</option>
+              <option value="PCV">PCV</option>
+            </ng-container>
+            <ng-container *ngIf="selectedAge === '6months'">
+              <option value="TCV">TCV</option>
+            </ng-container>
+            <ng-container *ngIf="selectedAge === '9months'">
+              <option value="MMR">MMR</option>
+              <option value="MCV">MCV</option>
+            </ng-container>
+            <ng-container *ngIf="selectedAge === '12months'">
+              <option value="HepA">Hep A</option>
+              <option value="MCV">MCV</option>
+              <option value="JE">JE</option>
+            </ng-container>
+            <ng-container *ngIf="selectedAge === '13months'">
+              <option value="JE">JE</option>
+            </ng-container>
+            <ng-container *ngIf="selectedAge === '15months'">
+              <option value="MMR">MMR</option>
+              <option value="Varicella">Varicella</option>
+              <option value="PCV">PCV</option>
+              <option value="Cholera">Cholera</option>
+            </ng-container>
+          </select>
+
+          <div class="form-group mb-3" (change)="onDoseSelect($event)">
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                id="dosage1"
+                value="dose 1"
+                formControlName="dosage"
+              />
+              <label class="form-check-label" for="dosage">Dose-1</label>
             </div>
-            <div class="modal-body">
-                <form [formGroup]="vaccineForm">
-                    <label for="selectName">Child Name</label>
-                    <select class="form-select mb-3" aria-label="Default select example" formControlName="selectName"
-                    (change)="onChildSelect($event)" placeholder="select Child name">
-                    <option selected>select child name</option>
-                    <option *ngFor="let group of childData" [value]="group.name">{{group.name}}
-                    </option>
-                    <small [class.d-none]="vaccineForm.get('selectName')?.valid ||
-                    vaccineForm.get('selectName')?.untouched" class=" text-danger">Name is required</small>
-                </select>
-
-                <label for="age">Child's age</label>
-                    <select class="form-select mb-3" aria-label="Default select example" formControlName="age"
-                        (change)="onChangeEvent($event)">
-                        <option selected>Select Child's Age</option>
-                        <option value="Birth">Birth</option>
-                        <option value="6weeks">6 weeks</option>
-                        <option value="10weeks">10 weeks</option>
-                        <option value="14weeks">14 weeks</option>
-                        <option value="6months">6 months</option>
-                        <option value="9months">9 months</option>
-                        <option value="12months">12 months</option>
-                        <option value="13months">13 months</option>
-                        <option value="15months">15 months</option>
-                        <option value="16-18months">16-18 months</option>
-                        <option value="18months">18 months</option>
-                        <option value="2years">2 years</option>
-                        <option value="4-6years">4-6 years</option>
-                        <option value="9-14years">9-14 years</option>
-                        <option value="15-18years">15-18 years</option>
-                    </select>
-
-                    <label for="vaccine">Vaccine</label>
-                    <select class="form-select mb-3" aria-label="Default select example" formControlName="vacName"
-                        (change)="onVacSelect($event)">
-                        <option selected>Select Vaccine</option>
-                        <ng-container *ngIf="selectedAge === 'Birth'">
-                            <option value="BCG">BCG</option>
-                            <option value="OPV">OPV</option>
-                            <option value="Hep-B">Hep-B</option>
-                        </ng-container>
-                        <ng-container *ngIf="selectedAge === '6weeks'">
-                            <option value="DTwP/DTaP">DTwP/DTaP</option>
-                            <option value="IPV">IPV</option>
-                            <option value="Hib">Hib</option>
-                            <option value="Hep-B">Hep-B</option>
-                            <option value="Rotavirus">Rotavirus</option>
-                            <option value="PCV">PCV</option>
-                        </ng-container>
-                        <ng-container *ngIf="selectedAge === '10weeks'">
-                            <option value="DTwP/DTaP">DTwP/DTaP</option>
-                            <option value="IPV">IPV</option>
-                            <option value="Hib">Hib</option>
-                            <option value="Hep-B">Hep-B</option>
-                            <option value="Rotavirus">Rotavirus</option>
-                            <option value="PCV">PCV</option>
-                        </ng-container>
-                        <ng-container *ngIf="selectedAge === '14weeks'">
-                            <option value="DTwP/DTaP">DTwP/DTaP</option>
-                            <option value="IPV">IPV</option>
-                            <option value="Hib">Hib</option>
-                            <option value="Hep-B">Hep-B</option>
-                            <option value="Rotavirus">Rotavirus</option>
-                            <option value="PCV">PCV</option>
-                        </ng-container>
-                        <ng-container *ngIf="selectedAge === '6months'">
-                            <option value="TCV">TCV</option>
-                        </ng-container>
-                        <ng-container *ngIf="selectedAge === '9months'">
-                            <option value="MMR">MMR</option>
-                            <option value="MCV">MCV</option>
-                        </ng-container>
-                        <ng-container *ngIf="selectedAge === '12months'">
-                            <option value="HepA">Hep A</option>
-                            <option value="MCV">MCV</option>
-                            <option value="JE">JE</option>
-                        </ng-container>
-                        <ng-container *ngIf="selectedAge === '13months'">
-                            <option value="JE">JE</option>
-                        </ng-container>
-                        <ng-container *ngIf="selectedAge === '15months'">
-                            <option value="MMR">MMR</option>
-                            <option value="Varicella">Varicella</option>
-                            <option value="PCV">PCV</option>
-                            <option value="Cholera">Cholera</option>
-                        </ng-container>
-                    </select>
-
-                    <div class="form-group mb-3" (change)="onDoseSelect($event)">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" id="dosage1" value="dose 1"
-                                formControlName="dosage">
-                            <label class="form-check-label" for="dosage">Dose-1</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" id="dosage2" value="dose 2"
-                                formControlName="dosage">
-                            <label class="form-check-label" for="dosage2">Dose-2</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" id="dosage3" value="dose 3"
-                                formControlName="dosage">
-                            <label class="form-check-label" for="dosage3">Dose-3</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" id="NA" value="NA" formControlName="dosage">
-                            <label class="form-check-label" for="NA">NA</label>
-                        </div>
-                    </div>
-
-                    <div class="form-check form-check-inline" (change)="onVacStatusCheck($event)">
-                        <input class="form-check-input" type="radio"  id="Active" value="Active"formControlName="vacStatus">
-                        <label class="form-check-label" for="Active">Active</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio"  id="Inactive" value="Inactive" formControlName="vacStatus">
-                        <label class="form-check-label" for="Inactive">Inactive</label>
-                      </div>
-                </form>
-
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                id="dosage2"
+                value="dose 2"
+                formControlName="dosage"
+              />
+              <label class="form-check-label" for="dosage2">Dose-2</label>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" (click)="addVaccineDetails()">Add</button>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                id="dosage3"
+                value="dose 3"
+                formControlName="dosage"
+              />
+              <label class="form-check-label" for="dosage3">Dose-3</label>
             </div>
-        </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                id="NA"
+                value="NA"
+                formControlName="dosage"
+              />
+              <label class="form-check-label" for="NA">NA</label>
+            </div>
+          </div>
+
+          <div
+            class="form-check form-check-inline"
+            (change)="onVacStatusCheck($event)"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              id="Active"
+              value="Active"
+              formControlName="vacStatus"
+            />
+            <label class="form-check-label" for="Active">Active</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              id="Inactive"
+              value="Inactive"
+              formControlName="vacStatus"
+            />
+            <label class="form-check-label" for="Inactive">Inactive</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="addVaccineDetails()"
+        >
+          Add
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-offset-1 col-md-10">
-            <div class="panel">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col col-sm-3 col-xs-12">
-                            <h4 class="title">Data <span>List</span></h4>
-                        </div>
-                        <div class="col-sm-9 col-xs-12 text-right">
-                            <!-- <div class="btn_group">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+      <div class="panel">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col col-sm-3 col-xs-12">
+              <h4 class="title">Data <span>List</span></h4>
+            </div>
+            <div class="col-sm-9 col-xs-12 text-right">
+              <!-- <div class="btn_group">
                                 <input type="text" class="form-control" placeholder="Search">
                             </div> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-body table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Vaccine Name</th>
-                                <th>Dosage</th>
-                                <th>Vaccine Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let vaccine of vaccineData">
-                                <td>{{ vaccine.selectName }}</td>
-                                <td>{{ vaccine.age }}</td>
-                                <td>{{ vaccine.vacName }}</td>
-                                <td>{{ vaccine.dosage }}</td>
-                                <td>{{ vaccine.vacStatus }}</td>
-                                <td>
-                                    <div class="buttonsize">
-                                        <button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="editVaccineDetails(vaccine)">Edit</button>
-                                        <button class="btn btn-primary" (click)="deleteVaccineDetails(vaccine.id)">Delete</button>
-                                    </div>
-                                </td>
-                              </tr>
-                        </tbody>
-                    </table>
-                </div>
+            </div>
+          </div>
         </div>
+        <div class="panel-body table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Vaccine Name</th>
+                <th>Dosage</th>
+                <th>Vaccine Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let vaccine of vaccineData">
+                <td>{{ vaccine.selectName }}</td>
+                <td>{{ vaccine.age }}</td>
+                <td>{{ vaccine.vacName }}</td>
+                <td>{{ vaccine.dosage }}</td>
+                <td>{{ vaccine.vacStatus }}</td>
+                <td>
+                  <div class="buttonsize">
+                    <button
+                      class="btn btn-primary me-3"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      (click)="editVaccineDetails(vaccine)"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      class="btn btn-primary"
+                      (click)="deleteVaccineDetails(vaccine.id)"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
