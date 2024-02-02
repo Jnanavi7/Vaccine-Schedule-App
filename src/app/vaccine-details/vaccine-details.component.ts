@@ -58,6 +58,7 @@ export class VaccineDetailsComponent implements OnInit {
     this.showUpdate = false;
     this.vaccineForm.reset();
   }
+
   addVaccineDetails() {
     this.vaccineModelObj.selectName = this.vaccineForm.value.selectName;
     this.vaccineModelObj.age = this.vaccineForm.value.age;
@@ -102,6 +103,7 @@ export class VaccineDetailsComponent implements OnInit {
         let ref = document.getElementById('cancel');
         ref?.click();
         this.vaccineForm.reset();
+        this.getVaccineDetails();
       });
   }
 
@@ -131,4 +133,6 @@ export class VaccineDetailsComponent implements OnInit {
   onChildSelect(event: any) {
     this.selectedChild = event.target.value;
   }
+
+
 }

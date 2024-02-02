@@ -6,14 +6,33 @@
       "dob": "2023-09-24",
       "tob": "18:30",
       "sex": "Male",
-      "motherName": "Ramya",
+      "motherName": "Ramyaa",
       "contactNo1": "9393230098",
       "fatherName": "Rishi",
       "contactNo2": "893832920",
       "address": "4th Block, Main building 2, Bengaluru"
+    },
+    {
+      "id": "93de",
+      "name": "Laisha",
+      "dob": "2024-01-29",
+      "tob": "05:15",
+      "sex": "Female",
+      "motherName": "Noor",
+      "contactNo1": "9930093865",
+      "fatherName": "Kanishk",
+      "contactNo2": "8923010384",
+      "address": "10th main , Raj Building, Bengaluru"
     }
   ],
-  "vaacine-deatils":[
-    
+  "vaccine-details": [
+    {
+      "id": "0ecb",
+      "selectName": "Arush",
+      "age": "10weeks",
+      "vacName": "Select Vaccine",
+      "dosage": "dose 2",
+      "vacStatus": "Active"
+    }
   ]
 }

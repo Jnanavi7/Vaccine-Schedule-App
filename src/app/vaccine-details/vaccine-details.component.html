@@ -4,6 +4,7 @@
     class="btn btn-primary addmodal"
     data-bs-toggle="modal"
     data-bs-target="#exampleModal"
+     (click)="onclickAdd()"
   >
     Add Vaccine Details
   </button>
@@ -208,17 +209,10 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
-          (click)="addVaccineDetails()"
-        >
-          Add
-        </button>
-      </div>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" *ngIf="showAdd" (click)="addVaccineDetails()">Add</button>
+            <button type="button" class="btn btn-primary" *ngIf="showUpdate" (click)="updateVaccineDetails()">Update</button>
+    </div>
     </div>
   </div>
 </div>
